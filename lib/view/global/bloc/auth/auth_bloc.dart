@@ -58,6 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
       await _authRepo.login(email: event.email, password: event.password);
     } on AuthException catch (e) {
       showErrorToast(e.message);
+      _loaderOverlayCubit.hideLoading();
     }
   }
 
@@ -67,6 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
       await _authRepo.signUp(email: event.email, password: event.password);
     } on AuthException catch (e) {
       showErrorToast(e.message);
+      _loaderOverlayCubit.hideLoading();
     }
   }
 
@@ -109,6 +111,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
       await _authRepo.logout();
     } on AuthException catch (e) {
       showErrorToast(e.message);
+      _loaderOverlayCubit.hideLoading();
     }
   }
 
