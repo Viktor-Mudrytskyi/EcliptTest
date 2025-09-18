@@ -11,10 +11,7 @@ class AuthService {
   User? get currentUser => _auth.currentUser;
 
   Future<void> reloadUser() async {
-    if (currentUser == null) {
-      return;
-    }
-    await _auth.currentUser!.reload();
+    await _auth.currentUser?.reload();
   }
 
   Future<bool> isUserLoggedIn() async {
@@ -50,5 +47,9 @@ class AuthService {
     );
 
     return userCredential;
+  }
+
+  Future<void> logout() async {
+    await _auth.signOut();
   }
 }

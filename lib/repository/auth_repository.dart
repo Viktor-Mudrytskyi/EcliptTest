@@ -53,7 +53,6 @@ class AuthRepository {
   Future<UserCredential> signUp({
     required String password,
     required String email,
-    required String name,
   }) async {
     try {
       final credential = await _authService.signUp(
@@ -68,6 +67,16 @@ class AuthRepository {
       throw AuthException.fromCode(e.code);
     } catch (e) {
       _logger.e('User auth uknown exception: ${e.toString()}');
+      throw const AuthException();
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await _authService.logout();
+      _logger.d('User logged out');
+    } catch (e) {
+      _logger.e('User logout exception: ${e.toString()}');
       throw const AuthException();
     }
   }

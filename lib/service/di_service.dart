@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:test_task_eclipt/repository/auth_repository.dart';
+import 'package:test_task_eclipt/repository/user_repository.dart';
 import 'package:test_task_eclipt/service/auth_service.dart';
 import 'package:test_task_eclipt/service/logger_service.dart';
 
@@ -17,6 +18,10 @@ class DiService {
         authService: _getIt<AuthService>(),
         logger: _getIt<LoggerService>(),
       ),
+    );
+
+    _getIt.registerLazySingleton<UserRepository>(
+      () => UserRepository(logger: _getIt<LoggerService>()),
     );
   }
 
