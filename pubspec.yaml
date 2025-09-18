@@ -16,6 +16,8 @@ dependencies:
   cloud_firestore: ^6.0.1
   logger: ^2.6.1
   rxdart: ^0.28.0
+  flutter_native_splash: ^2.4.6
+  spider: ^4.2.2
 
 dev_dependencies:
   flutter_test:
