@@ -30,15 +30,11 @@ use_references_list: false
 package: theme
 
 groups:
-  # - path: assets/new/icons
-  #   class_name: AppIcons
-  #   types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
+  - path: assets/icons
+    class_name: AppIcons
+    types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
 
-  # - path: assets/mock
-  #   class_name: AppMock
-  #   types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
-
-  - path: asset/image
+  - path: assets/images
     class_name: AppImages
     types: [.png, .jpg, .jpeg, .webp, .webm, .bmp, .svg]
 

@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_task_eclipt/repository/auth_repository.dart';
 import 'package:test_task_eclipt/repository/exception/auth_exception.dart';
-import 'package:test_task_eclipt/repository/user_repository.dart';
 import 'package:test_task_eclipt/route/navigaion_mixin.dart';
 import 'package:test_task_eclipt/view/auth/sign_in_screen.dart';
 import 'package:test_task_eclipt/view/global/bloc/loader_overlay/loader_overlay_cubit.dart';
@@ -30,7 +29,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
     required AuthRepository authRepo,
     required GlobalKey<NavigatorState> navigatorKey,
     required LoaderOverlayCubit loaderOverlayCubit,
-    required UserRepository userRepo,
   }) : _authRepo = authRepo,
        _loaderOverlayCubit = loaderOverlayCubit,
        _navigatorKey = navigatorKey,

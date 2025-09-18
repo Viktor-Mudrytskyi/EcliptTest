@@ -7,6 +7,8 @@ extension ContextUtils on BuildContext {
       FocusManager.instance.primaryFocus?.unfocus();
     }
   }
+
+  EdgeInsets get padding => MediaQuery.of(this).padding;
 }
 
 extension Nullabilty on Object? {
