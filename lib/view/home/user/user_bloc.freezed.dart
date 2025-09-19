@@ -358,13 +358,13 @@ return home(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  processing,TResult Function()?  profileSetUp,TResult Function( UserModel model)?  home,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  processing,TResult Function()?  profileSetUp,TResult Function( UserModel model,  String userEmail)?  home,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Processing() when processing != null:
 return processing();case _ProfileSetUp() when profileSetUp != null:
 return profileSetUp();case _Home() when home != null:
-return home(_that.model);case _:
+return home(_that.model,_that.userEmail);case _:
   return orElse();
 
 }
@@ -382,13 +382,13 @@ return home(_that.model);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  processing,required TResult Function()  profileSetUp,required TResult Function( UserModel model)  home,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  processing,required TResult Function()  profileSetUp,required TResult Function( UserModel model,  String userEmail)  home,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Processing():
 return processing();case _ProfileSetUp():
 return profileSetUp();case _Home():
-return home(_that.model);case _:
+return home(_that.model,_that.userEmail);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -405,13 +405,13 @@ return home(_that.model);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  processing,TResult? Function()?  profileSetUp,TResult? Function( UserModel model)?  home,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  processing,TResult? Function()?  profileSetUp,TResult? Function( UserModel model,  String userEmail)?  home,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Processing() when processing != null:
 return processing();case _ProfileSetUp() when profileSetUp != null:
 return profileSetUp();case _Home() when home != null:
-return home(_that.model);case _:
+return home(_that.model,_that.userEmail);case _:
   return null;
 
 }
@@ -519,10 +519,11 @@ String toString() {
 
 
 class _Home implements UserState {
-  const _Home(this.model);
+  const _Home(this.model, this.userEmail);
   
 
  final  UserModel model;
+ final  String userEmail;
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
@@ -534,16 +535,16 @@ _$HomeCopyWith<_Home> get copyWith => __$HomeCopyWithImpl<_Home>(this, _$identit
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Home&&(identical(other.model, model) || other.model == model));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Home&&(identical(other.model, model) || other.model == model)&&(identical(other.userEmail, userEmail) || other.userEmail == userEmail));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,model);
+int get hashCode => Object.hash(runtimeType,model,userEmail);
 
 @override
 String toString() {
-  return 'UserState.home(model: $model)';
+  return 'UserState.home(model: $model, userEmail: $userEmail)';
 }
 
 
@@ -554,7 +555,7 @@ abstract mixin class _$HomeCopyWith<$Res> implements $UserStateCopyWith<$Res> {
   factory _$HomeCopyWith(_Home value, $Res Function(_Home) _then) = __$HomeCopyWithImpl;
 @useResult
 $Res call({
- UserModel model
+ UserModel model, String userEmail
 });
 
 
@@ -571,10 +572,11 @@ class __$HomeCopyWithImpl<$Res>
 
 /// Create a copy of UserState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? model = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? model = null,Object? userEmail = null,}) {
   return _then(_Home(
 null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
-as UserModel,
+as UserModel,null == userEmail ? _self.userEmail : userEmail // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

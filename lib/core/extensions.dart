@@ -9,6 +9,7 @@ extension ContextUtils on BuildContext {
   }
 
   EdgeInsets get padding => MediaQuery.of(this).padding;
+  Size get mqSize => MediaQuery.of(this).size;
 }
 
 extension Nullabilty on Object? {

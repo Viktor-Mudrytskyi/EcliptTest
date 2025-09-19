@@ -54,7 +54,9 @@ class UserBloc extends Bloc<UserEvent, UserState>
       if (userData.text.isNullOrEmpty) {
         emit(const UserState.profileSetUp());
       } else {
-        emit(UserState.home(userData));
+        emit(
+          UserState.home(userData, _authRepository.currentUser?.email ?? ''),
+        );
       }
     } on RemoteException catch (e) {
       showErrorToast(e.message);

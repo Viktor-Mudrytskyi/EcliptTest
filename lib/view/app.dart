@@ -40,6 +40,7 @@ class _MainAppState extends State<MainApp> {
         navigatorKey: _navigatorKey,
         theme: AppTheme.lightTheme,
         home: const SplashScreen(),
+        debugShowCheckedModeBanner: false,
         builder: (context, child) {
           return BlocBuilder<LoaderOverlayCubit, LoaderOverlayState>(
             bloc: _loaderOverlayCubit,
