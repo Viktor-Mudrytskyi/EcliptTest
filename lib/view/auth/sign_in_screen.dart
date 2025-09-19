@@ -6,7 +6,8 @@ import 'package:test_task_eclipt/core/validation/password_validator.dart';
 import 'package:test_task_eclipt/theme/app_colors.dart';
 import 'package:test_task_eclipt/theme/app_text_styles.dart';
 import 'package:test_task_eclipt/theme/resources.dart';
-import 'package:test_task_eclipt/view/auth/bloc/cubit/sign_in_cubit.dart';
+import 'package:test_task_eclipt/view/auth/bloc/sign_in/sign_in_cubit.dart';
+import 'package:test_task_eclipt/view/auth/sign_up_screen.dart';
 import 'package:test_task_eclipt/view/common/app_button.dart';
 import 'package:test_task_eclipt/view/common/app_svg_icon.dart';
 import 'package:test_task_eclipt/view/common/custom_text_field.dart';
@@ -100,7 +101,14 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).replace(
+                                oldRoute: ModalRoute.of(context)!,
+                                newRoute: MaterialPageRoute(
+                                  builder: (context) => const SignUpScreen(),
+                                ),
+                              );
+                            },
                             child: Text(
                               'Sign Up',
                               style: AppTextStyles.base.copyWith(
