@@ -43,7 +43,6 @@ class UserBloc extends Bloc<UserEvent, UserState>
   ) async {
     final oldState = state;
     try {
-      emit(const UserState.processing());
       final userData = await _userRepo.getUserInfo(
         _authRepository.currentUser?.uid ?? '',
       );

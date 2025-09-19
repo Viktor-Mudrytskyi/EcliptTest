@@ -505,11 +505,12 @@ extension AuthStatePatterns on AuthState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _LoggedIn value)?  loggedIn,TResult Function( _LoggedOut value)?  loggedOut,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Onboarding value)?  onboarding,TResult Function( _LoggedIn value)?  loggedIn,TResult Function( _LoggedOut value)?  loggedOut,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case _LoggedIn() when loggedIn != null:
+return initial(_that);case _Onboarding() when onboarding != null:
+return onboarding(_that);case _LoggedIn() when loggedIn != null:
 return loggedIn(_that);case _LoggedOut() when loggedOut != null:
 return loggedOut(_that);case _:
   return orElse();
@@ -529,11 +530,12 @@ return loggedOut(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _LoggedIn value)  loggedIn,required TResult Function( _LoggedOut value)  loggedOut,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Onboarding value)  onboarding,required TResult Function( _LoggedIn value)  loggedIn,required TResult Function( _LoggedOut value)  loggedOut,}){
 final _that = this;
 switch (_that) {
 case _Initial():
-return initial(_that);case _LoggedIn():
+return initial(_that);case _Onboarding():
+return onboarding(_that);case _LoggedIn():
 return loggedIn(_that);case _LoggedOut():
 return loggedOut(_that);}
 }
@@ -549,11 +551,12 @@ return loggedOut(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _LoggedIn value)?  loggedIn,TResult? Function( _LoggedOut value)?  loggedOut,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Onboarding value)?  onboarding,TResult? Function( _LoggedIn value)?  loggedIn,TResult? Function( _LoggedOut value)?  loggedOut,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case _LoggedIn() when loggedIn != null:
+return initial(_that);case _Onboarding() when onboarding != null:
+return onboarding(_that);case _LoggedIn() when loggedIn != null:
 return loggedIn(_that);case _LoggedOut() when loggedOut != null:
 return loggedOut(_that);case _:
   return null;
@@ -572,10 +575,11 @@ return loggedOut(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( User fbUser)?  loggedIn,TResult Function()?  loggedOut,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  onboarding,TResult Function( User fbUser)?  loggedIn,TResult Function()?  loggedOut,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case _LoggedIn() when loggedIn != null:
+return initial();case _Onboarding() when onboarding != null:
+return onboarding();case _LoggedIn() when loggedIn != null:
 return loggedIn(_that.fbUser);case _LoggedOut() when loggedOut != null:
 return loggedOut();case _:
   return orElse();
@@ -595,10 +599,11 @@ return loggedOut();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( User fbUser)  loggedIn,required TResult Function()  loggedOut,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  onboarding,required TResult Function( User fbUser)  loggedIn,required TResult Function()  loggedOut,}) {final _that = this;
 switch (_that) {
 case _Initial():
-return initial();case _LoggedIn():
+return initial();case _Onboarding():
+return onboarding();case _LoggedIn():
 return loggedIn(_that.fbUser);case _LoggedOut():
 return loggedOut();}
 }
@@ -614,10 +619,11 @@ return loggedOut();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( User fbUser)?  loggedIn,TResult? Function()?  loggedOut,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  onboarding,TResult? Function( User fbUser)?  loggedIn,TResult? Function()?  loggedOut,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case _LoggedIn() when loggedIn != null:
+return initial();case _Onboarding() when onboarding != null:
+return onboarding();case _LoggedIn() when loggedIn != null:
 return loggedIn(_that.fbUser);case _LoggedOut() when loggedOut != null:
 return loggedOut();case _:
   return null;
@@ -651,6 +657,38 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'AuthState.initial()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Onboarding extends AuthState {
+  const _Onboarding(): super._();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Onboarding);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'AuthState.onboarding()';
 }
 
 

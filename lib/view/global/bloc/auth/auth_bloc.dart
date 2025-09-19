@@ -7,10 +7,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_task_eclipt/repository/auth_repository.dart';
 import 'package:test_task_eclipt/repository/exception/auth_exception.dart';
 import 'package:test_task_eclipt/route/navigaion_mixin.dart';
+import 'package:test_task_eclipt/service/shared_pref_service.dart';
 import 'package:test_task_eclipt/view/auth/sign_in_screen.dart';
 import 'package:test_task_eclipt/view/global/bloc/loader_overlay/loader_overlay_cubit.dart';
 import 'package:test_task_eclipt/view/global/mixin/overlay_mixin.dart';
 import 'package:test_task_eclipt/view/home/home_screen.dart';
+import 'package:test_task_eclipt/view/onboarding/onboarding_screen.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
@@ -22,6 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
 
   final GlobalKey<NavigatorState> _navigatorKey;
   final LoaderOverlayCubit _loaderOverlayCubit;
+  final SharedPrefService _sharedPrefService;
 
   StreamSubscription<UserAuthStatus?>? _authStatusSubscription;
 
@@ -29,8 +32,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
     required AuthRepository authRepo,
     required GlobalKey<NavigatorState> navigatorKey,
     required LoaderOverlayCubit loaderOverlayCubit,
+    required SharedPrefService sharedPrefService,
   }) : _authRepo = authRepo,
        _loaderOverlayCubit = loaderOverlayCubit,
+       _sharedPrefService = sharedPrefService,
        _navigatorKey = navigatorKey,
        super(const _Initial()) {
     on<AuthEvent>(_mapper);
@@ -47,7 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
   }
 
   Future<void> _init(_Init event, Emitter<AuthState> emit) async {
-    _authStatusSubscription = _authRepo.authStatus.listen((status) {
+    _authStatusSubscription = _authRepo.authStatusStream.listen((status) {
       add(AuthEvent.resolveState(status: status));
     });
   }
@@ -77,6 +82,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
       orElse: () => true,
       initial: (value) => false,
     );
+
+    if (!_sharedPrefService.isOnboardingCompleted()) {
+      _loaderOverlayCubit.hideLoading();
+      unawaited(
+        replaceAllWithKey(
+          key: _navigatorKey,
+          page: const OnboardingScreen(),
+          animate: shouldAnimate,
+        ),
+      );
+      emit(const AuthState.onboarding());
+      return;
+    }
 
     if (event.status == UserAuthStatus.loggedOut) {
       _loaderOverlayCubit.hideLoading();

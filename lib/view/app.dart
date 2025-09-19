@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_task_eclipt/service/di_service.dart';
 import 'package:test_task_eclipt/theme/app_theme.dart';
+import 'package:test_task_eclipt/theme/resources.dart';
 import 'package:test_task_eclipt/view/common/stack_loader.dart';
 import 'package:test_task_eclipt/view/global/bloc/auth/auth_bloc.dart';
 import 'package:test_task_eclipt/view/global/bloc/loader_overlay/loader_overlay_cubit.dart';
@@ -23,9 +25,13 @@ class _MainAppState extends State<MainApp> {
   void initState() {
     _authBloc = AuthBloc(
       authRepo: DiService.get(),
+      sharedPrefService: DiService.get(),
       loaderOverlayCubit: _loaderOverlayCubit,
       navigatorKey: _navigatorKey,
     );
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      precacheImage(const AssetImage(AppImages.homeBg), context);
+    });
     super.initState();
   }
 

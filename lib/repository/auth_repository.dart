@@ -26,7 +26,8 @@ class AuthRepository {
     );
   }
 
-  Stream<UserAuthStatus> get authStatus => subject.stream;
+  Stream<UserAuthStatus> get authStatusStream => subject.stream;
+  UserAuthStatus get authStatusValue => subject.value;
   User? get currentUser => _authService.currentUser;
 
   Future<UserCredential> login({

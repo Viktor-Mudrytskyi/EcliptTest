@@ -6,13 +6,13 @@ import 'package:test_task_eclipt/service/di_service.dart';
 import 'package:test_task_eclipt/view/app.dart';
 
 void main() async {
-  _setup();
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await _setup();
   runApp(const MainApp());
 }
 
-void _setup() {
-  DiService.setup();
+Future<void> _setup() {
+  return DiService.setup();
 }
