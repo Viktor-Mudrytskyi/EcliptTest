@@ -131,12 +131,12 @@ return signOut(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String password)?  signIn,TResult Function( String email,  String password)?  signUp,TResult Function( UserAuthStatus status,  String? password)?  resolveState,TResult Function()?  init,TResult Function()?  signOut,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String password)?  signIn,TResult Function( String email,  String password)?  signUp,TResult Function( UserAuthStatus status)?  resolveState,TResult Function()?  init,TResult Function()?  signOut,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignIn() when signIn != null:
 return signIn(_that.email,_that.password);case _SignUp() when signUp != null:
 return signUp(_that.email,_that.password);case _Resolve() when resolveState != null:
-return resolveState(_that.status,_that.password);case _Init() when init != null:
+return resolveState(_that.status);case _Init() when init != null:
 return init();case _SignOut() when signOut != null:
 return signOut();case _:
   return orElse();
@@ -156,12 +156,12 @@ return signOut();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String password)  signIn,required TResult Function( String email,  String password)  signUp,required TResult Function( UserAuthStatus status,  String? password)  resolveState,required TResult Function()  init,required TResult Function()  signOut,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String password)  signIn,required TResult Function( String email,  String password)  signUp,required TResult Function( UserAuthStatus status)  resolveState,required TResult Function()  init,required TResult Function()  signOut,}) {final _that = this;
 switch (_that) {
 case _SignIn():
 return signIn(_that.email,_that.password);case _SignUp():
 return signUp(_that.email,_that.password);case _Resolve():
-return resolveState(_that.status,_that.password);case _Init():
+return resolveState(_that.status);case _Init():
 return init();case _SignOut():
 return signOut();case _:
   throw StateError('Unexpected subclass');
@@ -180,12 +180,12 @@ return signOut();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String password)?  signIn,TResult? Function( String email,  String password)?  signUp,TResult? Function( UserAuthStatus status,  String? password)?  resolveState,TResult? Function()?  init,TResult? Function()?  signOut,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String password)?  signIn,TResult? Function( String email,  String password)?  signUp,TResult? Function( UserAuthStatus status)?  resolveState,TResult? Function()?  init,TResult? Function()?  signOut,}) {final _that = this;
 switch (_that) {
 case _SignIn() when signIn != null:
 return signIn(_that.email,_that.password);case _SignUp() when signUp != null:
 return signUp(_that.email,_that.password);case _Resolve() when resolveState != null:
-return resolveState(_that.status,_that.password);case _Init() when init != null:
+return resolveState(_that.status);case _Init() when init != null:
 return init();case _SignOut() when signOut != null:
 return signOut();case _:
   return null;
@@ -335,11 +335,10 @@ as String,
 
 
 class _Resolve implements AuthEvent {
-  const _Resolve({required this.status, this.password});
+  const _Resolve({required this.status});
   
 
  final  UserAuthStatus status;
- final  String? password;
 
 /// Create a copy of AuthEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -351,16 +350,16 @@ _$ResolveCopyWith<_Resolve> get copyWith => __$ResolveCopyWithImpl<_Resolve>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Resolve&&(identical(other.status, status) || other.status == status)&&(identical(other.password, password) || other.password == password));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Resolve&&(identical(other.status, status) || other.status == status));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,password);
+int get hashCode => Object.hash(runtimeType,status);
 
 @override
 String toString() {
-  return 'AuthEvent.resolveState(status: $status, password: $password)';
+  return 'AuthEvent.resolveState(status: $status)';
 }
 
 
@@ -371,7 +370,7 @@ abstract mixin class _$ResolveCopyWith<$Res> implements $AuthEventCopyWith<$Res>
   factory _$ResolveCopyWith(_Resolve value, $Res Function(_Resolve) _then) = __$ResolveCopyWithImpl;
 @useResult
 $Res call({
- UserAuthStatus status, String? password
+ UserAuthStatus status
 });
 
 
@@ -388,11 +387,10 @@ class __$ResolveCopyWithImpl<$Res>
 
 /// Create a copy of AuthEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? status = null,Object? password = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? status = null,}) {
   return _then(_Resolve(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as UserAuthStatus,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as String?,
+as UserAuthStatus,
   ));
 }
 

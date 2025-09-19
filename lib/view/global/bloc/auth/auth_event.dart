@@ -10,10 +10,8 @@ class AuthEvent with _$AuthEvent {
     required String email,
     required String password,
   }) = _SignUp;
-  const factory AuthEvent.resolveState({
-    required UserAuthStatus status,
-    String? password,
-  }) = _Resolve;
+  const factory AuthEvent.resolveState({required UserAuthStatus status}) =
+      _Resolve;
   const factory AuthEvent.init() = _Init;
   const factory AuthEvent.signOut() = _SignOut;
 }

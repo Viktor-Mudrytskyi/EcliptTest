@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
- String get id; String? get text; bool? get completedOnboarding;
+ String get id; String? get text;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.text, text) || other.text == text)&&(identical(other.completedOnboarding, completedOnboarding) || other.completedOnboarding == completedOnboarding));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.text, text) || other.text == text));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,text,completedOnboarding);
+int get hashCode => Object.hash(runtimeType,id,text);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, text: $text, completedOnboarding: $completedOnboarding)';
+  return 'UserModel(id: $id, text: $text)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String? text, bool? completedOnboarding
+ String id, String? text
 });
 
 
@@ -65,12 +65,11 @@ class _$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? text = freezed,Object? completedOnboarding = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? text = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,text: freezed == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
-as String?,completedOnboarding: freezed == completedOnboarding ? _self.completedOnboarding : completedOnboarding // ignore: cast_nullable_to_non_nullable
-as bool?,
+as String?,
   ));
 }
 
@@ -155,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String? text,  bool? completedOnboarding)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String? text)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.text,_that.completedOnboarding);case _:
+return $default(_that.id,_that.text);case _:
   return orElse();
 
 }
@@ -176,10 +175,10 @@ return $default(_that.id,_that.text,_that.completedOnboarding);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String? text,  bool? completedOnboarding)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String? text)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
-return $default(_that.id,_that.text,_that.completedOnboarding);case _:
+return $default(_that.id,_that.text);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +195,10 @@ return $default(_that.id,_that.text,_that.completedOnboarding);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String? text,  bool? completedOnboarding)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String? text)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
-return $default(_that.id,_that.text,_that.completedOnboarding);case _:
+return $default(_that.id,_that.text);case _:
   return null;
 
 }
@@ -211,12 +210,11 @@ return $default(_that.id,_that.text,_that.completedOnboarding);case _:
 @JsonSerializable()
 
 class _UserModel implements UserModel {
-  const _UserModel({required this.id, this.text, this.completedOnboarding});
+  const _UserModel({required this.id, this.text});
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
 @override final  String id;
 @override final  String? text;
-@override final  bool? completedOnboarding;
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +229,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.text, text) || other.text == text)&&(identical(other.completedOnboarding, completedOnboarding) || other.completedOnboarding == completedOnboarding));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.text, text) || other.text == text));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,text,completedOnboarding);
+int get hashCode => Object.hash(runtimeType,id,text);
 
 @override
 String toString() {
-  return 'UserModel(id: $id, text: $text, completedOnboarding: $completedOnboarding)';
+  return 'UserModel(id: $id, text: $text)';
 }
 
 
@@ -251,7 +249,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String? text, bool? completedOnboarding
+ String id, String? text
 });
 
 
@@ -268,12 +266,11 @@ class __$UserModelCopyWithImpl<$Res>
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? text = freezed,Object? completedOnboarding = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? text = freezed,}) {
   return _then(_UserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,text: freezed == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
-as String?,completedOnboarding: freezed == completedOnboarding ? _self.completedOnboarding : completedOnboarding // ignore: cast_nullable_to_non_nullable
-as bool?,
+as String?,
   ));
 }
 
